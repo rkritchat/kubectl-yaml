@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       mylabelname: webapp
-  replicas: 1
+  replicas: 2  #kubernetes will away make Pod running for 2 Pod
   template: 
     metadata:
       labels: 
@@ -27,3 +27,9 @@ spec:
   containers:
     - name: queue
       image: richardchesterwood/k8s-fleetman-queue:release1
+
+#Service => expose Pod, make pod to aviable to call from external cluster
+#pod => wrapped container and running image
+#replicaset => Takecare Pod, when Pod down or not avaible replicaset will create new one.
+              # so we need to set how manay Pod we need on 'replicas' option
+              # and replicaset will guaruntee that our service will aviable
